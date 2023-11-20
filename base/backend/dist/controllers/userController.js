@@ -17,3 +17,5 @@ function tokenGen(_id) {
 function userLogin(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { email, password } = req.body;
+    });
+}

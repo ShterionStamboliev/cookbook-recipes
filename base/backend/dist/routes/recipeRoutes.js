@@ -8,4 +8,4 @@ const { getAllRecipes } = require('../controllers/recipesController');
 const router = express_1.default.Router();
 router.get('/', getAllRecipes);
 router.get('/:id');
-modul
+module.exports = router;
