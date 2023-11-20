@@ -1,19 +1,26 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express, Request, Response, Router } from 'express';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+import cors from 'cors';
+const recipeRoutes = require('./routes/recipeRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 dotenv.config();
 
 const app: Express = express();
-const port = 4000;
+app.use(cors());
+app.use(express.json());
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Express + TypeScript Server');
+app.use((req, res, next) => {
+    next();
 });
+
+app.use('/api/recipes', recipeRoutes);
+app.use('/api/user', userRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        app.listen(port, () => {
-            console.log(`Server is running on port ${port}`);
+        app.listen(process.env.APP_PORT, () => {
+            console.log(`Server is running on port ${process.env.APP_PORT}`);
         })
     })

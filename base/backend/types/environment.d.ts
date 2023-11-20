@@ -3,8 +3,9 @@ export {}
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
-            PORT: number;
+            APP_PORT: number;
             MONGO_URI: string;
+            SECRET_KEY: string;
         }
     }
 }
